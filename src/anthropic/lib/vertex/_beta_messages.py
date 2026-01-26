@@ -5,17 +5,17 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from ... import _legacy_response
+from .._utils import reject_output_format_and_config
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
 from ...resources.beta import Messages as FirstPartyMessagesAPI, AsyncMessages as FirstPartyAsyncMessagesAPI
-from .._third_party_utils import reject_output_format_and_config
 
 __all__ = ["Messages", "AsyncMessages"]
 
 
 class Messages(SyncAPIResource):
-    create = FirstPartyMessagesAPI.create
+    create = reject_output_format_and_config(FirstPartyMessagesAPI.create)
     stream = reject_output_format_and_config(FirstPartyMessagesAPI.stream)
     tool_runner = reject_output_format_and_config(FirstPartyMessagesAPI.tool_runner)
     count_tokens = reject_output_format_and_config(FirstPartyMessagesAPI.count_tokens)

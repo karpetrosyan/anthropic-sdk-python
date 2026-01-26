@@ -15,7 +15,7 @@ __all__ = ["Messages", "AsyncMessages"]
 
 
 class Messages(SyncAPIResource):
-    create = FirstPartyMessagesAPI.create
+    create = reject_output_format_and_config(FirstPartyMessagesAPI.create)
     stream = reject_output_format_and_config(FirstPartyMessagesAPI.stream)
     tool_runner = reject_output_format_and_config(FirstPartyMessagesAPI.tool_runner)
 
